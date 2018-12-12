@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "movie_ref.h"
-#include "linkedList_ref.h"
+#include "movie.h"
+#include "linkedList.h"
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -22,26 +22,36 @@ int main(int argc, char *argv[]) {
 	int cnt; //integer variable
 	
 	//1. reading the movie.dat-----------------------------
-	//1.1 FILE open
+	fp = fopen("movie.dat","r"); //1.1 FILE open
 	
 	//1.2 list generation (use function list_genList() )
 	list = list_genList();
 	
 	//1.3 read each movie data from the file and add it to the linked list
-	while ( /* read name, country, runtime and score*/ )
+	while ( EOF != fscanf(fp, "%c %c %i %f", &name, &country, &runTime, &score)/* read name, country, runtime and score*/ )
 	{	
 		//generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 	}
 
-	//1.4 FILE close
+	fclose(fp); //1.4 FILE close
 	
 	//2. program start
 	while(exit_flag == 0)
 	{
 		//2.1 print menu message and get input option
+		printf("---------------Menu---------------\n");
+		printf("1. print all the movies\n");
+		printf("2. search for specific country movies\n");
+		printf("3. search for specific runtime movies\n");
+		printf("4. search for specific score movies\n");
+		printf("5. exit\n");
+		printf("---------------Menu---------------\n");
+		printf("\n");
+		printf("--select an option :  ");
+		scanf("%i", &cnt);
 		
-		switch(option)
+		switch(cnt)
 		{
 			case 1: //print all the movies
 				printf("\nprinting all the movies in the list.....\n\n\n");
@@ -52,7 +62,7 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 2: //print movies of specific country
-
+				
 				break;
 				
 			case 3: //print movies with long runtime
