@@ -20,6 +20,8 @@ int main(int argc, char *argv[]) {
 	int (*repFunc)(void* obj, void* arg); //function pointer for using list_repeatFunc() function
 	void *arg; //a void pointer for passing argument to repFunc
 	int cnt; //integer variable
+	char temp[100]; // case1에서 한줄 불러올때 사용함 
+	
 	
 	//1. reading the movie.dat-----------------------------
 	fp = fopen("movie.dat","r"); //1.1 FILE open
@@ -56,8 +58,12 @@ int main(int argc, char *argv[]) {
 			case 1: //print all the movies
 				printf("\nprinting all the movies in the list.....\n\n\n");
 				printf("----------------------------------------\n");
-				
-				repFunc = mv_printAll;
+				fp = fopen("movie.dat","r");
+				while(NULL != fgets(temp, sizeof(temp), fp))
+				{
+					printf("%s\n", temp);
+				}
+				fclose(fp);
 				arg = NULL;
 				break;
 				
@@ -66,11 +72,21 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 3: //print movies with long runtime
-
+			
+			
+				
 				break;
 				
 			case 4: //print movies with high score
+				*int lowest_score;
+			
+				printf("lowest score:  ");		// 가장 작은 평점을 입력하시오 
+				scanf("%d", &lowest_score);
 				
+				
+				if()
+				
+				 	
 				break;
 				
 			case 5:
@@ -85,7 +101,7 @@ int main(int argc, char *argv[]) {
 		}
 		
 		//2.2 printing operation by function pointer (list_repeatFunc() is called here)
-		//2.3 print number of movies
+		printf("-totally %d movies are listed\n");//2.3 print number of movies
 	}
 	
 	return 0;

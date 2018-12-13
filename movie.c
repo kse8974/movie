@@ -36,7 +36,17 @@ void printMv(void* obj)
 
 int mv_printAll(void* obj, void* arg)
 {
+	struct movInfo movInfo_t;
+	obj = fopen("movie.dat","r");
+	fscanf(obj, "Name: %c (%c)\n", &movInfo_t.name, &movInfo_t.madeIn );
+	fscanf(obj, "running time: %d, score: %f", &movInfo_t.runTime, &movInfo_t.score);
+	fclose(obj);
 	
+	printf("Name: %c (%c)\n", movInfo_t.name, movInfo_t.madeIn );
+	printf("running time: %d, score: %f", movInfo_t.runTime, movInfo_t.score);
+	printf("----------------------------------------\n");
+	
+	return 0;
 }
 
 int mv_printScore(void* obj, void* arg)
